@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>문의 목록</h2>
+<table>
+    <tr>
+        <th>제목</th>
+        <th>분류</th>
+        <th>작성일</th>
+        <th>답변 여부</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td><a th:href="@{/posts/{postId}(postId=${post.id})}" th:text="${post.title}"></a></td>
+        <td th:text="${post.category}"></td>
+        <td th:text="${post.createdAt}"></td>
+        <td th:text="${post.isAnswered} ? '답변 완료' : '답변 안됨'"></td>
+    </tr>
+</table>
+<a href="/posts/register">문의하기</a>
+</body>
+</html>

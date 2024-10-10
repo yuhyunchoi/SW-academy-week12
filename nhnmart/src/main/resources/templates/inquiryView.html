@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Inquiry View</title>
+</head>
+<body>
+<h1>Inquiry View</h1>
+
+<h2 th:text="${inquiry.title}">Title</h2>
+<p><strong>Category:</strong> <span th:text="${inquiry.category}">Category</span></p>
+<p><strong>Content:</strong></p>
+<p th:text="${inquiry.content}">Content</p>
+<p><strong>Created At:</strong> <span th:text="${#temporals.format(inquiry.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+<p><strong>Answered:</strong> <span th:text="${inquiry.answered ? 'Yes' : 'No'}"></span></p>
+<p><strong>Written by User ID:</strong> <span th:text="${userId}"></span></p>
+
+<a href="/inquiries">Back to Inquiries List</a>
+</body>
+</html>

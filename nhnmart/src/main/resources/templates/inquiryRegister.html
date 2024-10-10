@@ -1,0 +1,20 @@
+<form th:action="@{/inquiries/register}" method="post" enctype="multipart/form-data">
+    <label>제목:</label>
+    <input type="text" name="title" required/><br/>
+
+    <label>분류:</label>
+    <select name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+    </select><br/>
+
+    <label>본문:</label>
+    <textarea name="content" rows="5" required></textarea><br/>
+
+    <button type="submit">확인</button>
+    <a href="/inquiries" role="button">취소</a>
+
+    <div th:if="${error}" style="color:red;">
+        <p th:text="${error}"></p>
+    </div>
+</form>

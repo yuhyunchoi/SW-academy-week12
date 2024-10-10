@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>학생 정보</title>
+</head>
+<body>
+<h1>학생 정보</h1>
+<p>ID: <span th:text="${student.id}"></span></p>
+<p>비밀번호: *****</p> <!-- 비밀번호 마스킹 처리 -->
+<p>이름: <span th:text="${student.name}"></span></p>
+<p>이메일: <span th:text="${student.email}"></span></p>
+<p>학년: <span th:text="${student.grade}"></span></p>
+<p th:if="${!hideScore}">평가: <span th:text="${student.estimate}"></span></p> <!-- hideScore가 없으면 평가 표시 -->
+<a th:href="@{/student/{id}/modify(id=${student.id})}">정보 수정</a>
+<a th:href="@{/logout}">Logout</a> <!-- Logout link -->
+</body>
+</html>

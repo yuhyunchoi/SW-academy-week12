@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>학생 등록</title>
+</head>
+<body>
+<h1>학생 등록</h1>
+<form th:action="@{/register}" method="post">
+  <div>
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required />
+  </div>
+  <div>
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <div>
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+  <div>
+    <label for="email">이메일:</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+  <div>
+    <label for="grade">점수:</label>
+    <input type="number" id="grade" name="grade" required />
+  </div>
+  <div>
+    <label for="estimate">평가:</label>
+    <input type="text" id="estimate" name="estimate" />
+  </div>
+  <div>
+    <button type="submit">등록</button>
+  </div>
+  <div th:if="${error}">
+    <p th:text="${error}" style="color:red;"></p>
+  </div>
+</form>
+</body>
+</html>

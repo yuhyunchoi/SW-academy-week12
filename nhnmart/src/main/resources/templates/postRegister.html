@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Inquiry</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 14px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<h1>Register Inquiry</h1>
+
+<form th:action="@{/inquiries/register}" method="post" enctype="multipart/form-data">
+  <label>제목:</label>
+  <input type="text" name="title" required/>
+
+  <label>분류:</label>
+  <select name="category" required>
+    <option value="" disabled selected>Select Category</option>
+    <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+  </select>
+
+  <label>본문:</label>
+  <textarea name="content" rows="5" required></textarea>
+
+  <button type="submit">확인</button>
+  <a href="/inquiries" role="button">취소</a>
+
+  <div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+  </div>
+</form>
+</body>
+</html>

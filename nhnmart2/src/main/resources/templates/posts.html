@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문의 목록</title>
+</head>
+<body>
+<h2>문의 목록</h2>
+
+<!-- 카테고리 검색 -->
+<form action="/posts" method="get">
+  <label for="category">분류 선택:</label>
+  <select id="category" name="category">
+    <option value="">전체</option>
+    <option value="불만 접수">불만 접수</option>
+    <option value="제안">제안</option>
+    <option value="환불/교환">환불/교환</option>
+    <option value="칭찬해요">칭찬해요</option>
+    <option value="기타 문의">기타 문의</option>
+  </select>
+  <button type="submit">검색</button>
+</form>
+
+<!-- 문의 목록 테이블 -->
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+  <tr>
+    <th>제목</th>
+    <th>카테고리</th>
+    <th>작성일시</th>
+    <th>답변 여부</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="post : ${posts}">
+    <td><a th:href="@{/posts/{postId}(postId=${post.id})}" th:text="${post.title}">문의 제목</a></td>
+    <td th:text="${post.category}">카테고리</td>
+    <td th:text="${#dates.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}">작성일시</td>
+    <td th:text="${post.isAnswered} ? '답변 완료' : '답변 대기 중'">답변 여부</td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 문의하기 버튼 -->
+<a href="/posts/register">문의하기</a>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>studentmodify</title>
+</head>
+<body>
+<h1>학생 정보 수정</h1>
+<form th:action="@{/student/{id}/modify(id=${student.id})}" method="post">
+    <div>
+        <label for="name">이름:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+    </div>
+    <div>
+        <label for="email">이메일:</label>
+        <input type="email" id="email" th:field="*{email}" required />
+    </div>
+    <div>
+        <label for="grade">점수:</label>
+        <input type="number" id="grade" th:field="*{grade}" required />
+    </div>
+    <div>
+        <label for="estimate">평가:</label>
+        <input type="text" id="estimate" th:field="*{estimate}" />
+    </div>
+    <div>
+        <label for="password">비밀번호 (수정 시 입력):</label>
+        <input type="password" id="password" th:field="*{password}" />
+    </div>
+    <div>
+        <button type="submit">수정</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Inquiries</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .btn-inquiry, .btn-logout {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 14px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-inquiry {
+      background-color: #007bff;
+    }
+    .btn-logout {
+      background-color: #dc3545;
+    }
+    .btn-inquiry:hover {
+      background-color: #0056b3;
+    }
+    .btn-logout:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+<h2>My Inquiries</h2>
+
+<!-- 문의 리스트 -->
+<table>
+  <thead>
+  <tr>
+    <th>No.</th> <!-- 번호 추가 -->
+    <th>Title</th>
+    <th>Category</th>
+    <th>Created Date</th>
+    <th>Answered</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Thymeleaf 반복문으로 문의 목록 출력 -->
+  <tr th:each="inquiry, iterStat : ${inquiries}"> <!-- iterStat 추가 -->
+    <td th:text="${iterStat.index + 1}"></td> <!-- 인덱스 출력 (1부터 시작) -->
+    <td>
+      <!-- 제목 클릭 시 문의 상세 페이지로 이동 -->
+      <a th:href="@{/inquiries/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a>
+    </td>
+    <td th:text="${inquiry.category}"></td>
+    <td th:text="${#temporals.format(inquiry.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${inquiry.answered ? 'Yes' : 'No'}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 문의하기 버튼 -->
+<a href="/inquiries/register" class="btn-inquiry">Register Inquiry</a>
+<!-- 로그아웃 버튼 -->
+<a href="/logout" class="btn-logout">Logout</a>
+</body>
+</html>
